@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 
-namespace Palomas.Request
+using Palomas.Items;
+
+namespace Palomas.Requests
 {
     public class Request : MonoBehaviour
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Palomas.Item
+namespace Palomas.Items
 {
     public class Item : MonoBehaviour
     {
