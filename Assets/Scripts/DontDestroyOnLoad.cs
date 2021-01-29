@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace RockPaperCastle
+namespace Palomas
 {
     public class DontDestroyOnLoad : MonoBehaviour
     {
