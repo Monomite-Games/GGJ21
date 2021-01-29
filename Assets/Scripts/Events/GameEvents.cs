@@ -42,6 +42,8 @@ namespace Palomas
         public event EventHandler<ItemEventArgs> ItemAttached;
         public event EventHandler<HealthEventArgs> HealthLost;
         public event EventHandler<LifeEventArgs> LifeLost;
+        public event EventHandler<ShitMeterEventArgs> ShitMeterChanged;
+        public event EventHandler Shit;
 
         public void OnToMainMenu()
         {
@@ -102,6 +104,17 @@ namespace Palomas
         {
             LifeEventArgs eventArgs = new LifeEventArgs(currentLifes);
             LifeLost?.Invoke(this, eventArgs);
+        }
+
+        public void OnShitMeterChanged(int currentValue)
+        {
+            ShitMeterEventArgs eventArgs = new ShitMeterEventArgs(currentValue);
+            ShitMeterChanged?.Invoke(this, eventArgs);
+        }
+
+        public void OnShit()
+        {
+            Shit?.Invoke(this, EventArgs.Empty);
         }
     }
 
@@ -179,6 +192,20 @@ namespace Palomas
         public LifeEventArgs(int currentLifes)
         {
             this.CurrentLifes = currentLifes;
+        }
+    }
+
+    public class ShitMeterEventArgs
+    {
+        public int CurrentValue
+        {
+            get;
+            private set;
+        }
+
+        public ShitMeterEventArgs(int currentValue)
+        {
+            this.CurrentValue = currentValue;
         }
     }
 }
