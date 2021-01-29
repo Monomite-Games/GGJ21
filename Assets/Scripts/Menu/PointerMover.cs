@@ -8,21 +8,30 @@ public class PointerMover : MonoBehaviour
     private GameObject RequestBubble;
 
     [SerializeField]
-    private GameObject Pointer;
+    private GameObject PointerPrefab;
 
     [SerializeField]
-    private Camera CameraUI;
+    private Transform PointersHolder;
+
+    [SerializeField]
+    private Camera UICamera;
 
     [SerializeField]
     private float BorderSize;
 
-    private RectTransform pointerRectTransform;
     private Vector3 targetPosition;
+    private RectTransform pointerRectTransform;
+    private GameObject Pointer;
 
     private void Awake()
     {
+        targetPosition = new Vector3(RequestBubble.transform.position.x, RequestBubble.transform.position.y, 0.0f);
+    }
+
+    private void Start()
+    {
+        Pointer = GameObject.Instantiate(PointerPrefab, PointersHolder);
         pointerRectTransform = Pointer.GetComponent<RectTransform>();
-        targetPosition = RequestBubble.transform.position;
     }
 
     private void Update()
@@ -49,7 +58,7 @@ public class PointerMover : MonoBehaviour
             if (IsPositionDown(cappedTargetScreenPosition)) cappedTargetScreenPosition.y = BorderSize;
             if (IsPositionUp(cappedTargetScreenPosition)) cappedTargetScreenPosition.y = Screen.height - BorderSize;
 
-            Vector3 pointerWorldPosition = CameraUI.ScreenToWorldPoint(cappedTargetScreenPosition);
+            Vector3 pointerWorldPosition = UICamera.ScreenToWorldPoint(cappedTargetScreenPosition);
             pointerRectTransform.position = pointerWorldPosition;
             pointerRectTransform.localPosition = new Vector3(pointerRectTransform.localPosition.x, pointerRectTransform.localPosition.y, 0.0f);
         }
