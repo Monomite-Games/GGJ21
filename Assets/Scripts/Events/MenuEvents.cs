@@ -1,18 +1,45 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
-public class MenuEvents : MonoBehaviour
+namespace Palomas
 {
-    // Start is called before the first frame update
-    void Start()
+    public class MenuEvents : MonoBehaviour
     {
-        
-    }
+        #region Singleton
+        public static MenuEvents Instance
+        {
+            get;
+            private set;
+        }
+        private void CreateSingleton()
+        {
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                Instance = this;
+            }
+        }
+        #endregion
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void Awake()
+        {
+            CreateSingleton();
+        }
+
+        public event EventHandler StartLevel;
+        public event EventHandler Quit;
+
+        public void OnToLevel()
+        {
+            StartLevel?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void OnQuit()
+        {
+            Quit?.Invoke(this, EventArgs.Empty);
+        }
     }
 }
