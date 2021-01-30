@@ -42,6 +42,7 @@ namespace Palomas
                 Lifes--;
                 RespawnPigeon();
             };
+            GameEvents.RequestCompleted += (sender, args) => { Invoke(nameof(SpawnRandomRequest), GameConstants.REQUEST_DELAY); };
 
             StartLevel();
         }
@@ -130,10 +131,13 @@ namespace Palomas
             yield return new WaitForSeconds(GameConstants.START_DELAY);
             
             GameEvents.OnGameStart();
-            SpawnRandomRequest();
 
-            yield return new WaitForSeconds(GameConstants.START_DELAY);
-            SpawnRandomRequest();
+            for (int requests = 0; requests <= GameConstants.MAX_ACTIVE_REQUESTS; requests++)
+            {
+                SpawnRandomRequest();
+
+                yield return new WaitForSeconds(GameConstants.REQUEST_DELAY);
+            }
         }
 
         protected IEnumerator FadeIn()

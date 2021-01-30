@@ -37,6 +37,7 @@ namespace Palomas.Menu
             //TODO animate
             if(RequestViews.TryGetValue(args.RequestId, out RequestView requestView))
             {
+                RequestViews.Remove(args.RequestId);
                 Destroy(requestView.gameObject);
             }
         }
