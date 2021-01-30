@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Palomas.Obstacles
 {
-    public class Obstacles : MonoBehaviour
+    public class KillerObstacle : MonoBehaviour
     {
         private GameEvents GameEvents => GameEvents.Instance;
 
