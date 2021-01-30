@@ -20,7 +20,7 @@ namespace Palomas.Requests
             if (other.CompareTag(GameConstants.TAG_ITEM))
             {
                 ItemController item = other.gameObject.GetComponent<ItemController>();
-                if (!Request.IsCompleted() && item.GetItemId().Equals(Request.GetItemId()))
+                if (!item.GetItemstatus() && !Request.IsCompleted() && item.GetItemId().Equals(Request.GetItemId()))
                 {
                     GameEvents.OnRequestCompleted(Request.GetId());
                 }

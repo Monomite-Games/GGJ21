@@ -413,33 +413,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4639063880007935482, guid: a4bcffb2a2227f24f809d877de7f36cc, type: 3}
   m_PrefabInstance: {fileID: 98237755}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &98237757 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6380154767881952803, guid: a4bcffb2a2227f24f809d877de7f36cc, type: 3}
-  m_PrefabInstance: {fileID: 98237755}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &98237758 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4639063880007935460, guid: a4bcffb2a2227f24f809d877de7f36cc, type: 3}
   m_PrefabInstance: {fileID: 98237755}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &98237759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 98237756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4b3d3bcd427a8245b1519635f22d221, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Claws: {fileID: 98237757}
-  canInteract: 0
-  isHolding: 0
-  rayDistance: 0
-  objectDownstairs: {fileID: 0}
 --- !u!114 &98237760
 MonoBehaviour:
   m_ObjectHideFlags: 0

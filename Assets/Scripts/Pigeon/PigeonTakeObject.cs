@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Palomas.Items;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,13 +8,20 @@ namespace Palomas.Pigeon
     public class PigeonTakeObject : MonoBehaviour
     {
         public Transform Claws;
+        private Collider2D col;
 
         public bool canInteract = false;
         public bool isHolding = false;
 
         public float rayDistance;
 
-        public GameObject objectDownstairs;
+        public ItemController heldItem;
+        private Transform objectDownstairs;
+
+        private void Start()
+        {
+            col = GetComponent<Collider2D>();
+        }
 
         private void Update()
         {
@@ -21,21 +29,27 @@ namespace Palomas.Pigeon
             {
                 if (!isHolding)
                 {
+                    heldItem = objectDownstairs.GetComponent<ItemController>();
                     isHolding = true;
-                    TakeItem();
-                    Debug.Log("coger");
+                    heldItem.TakeItem(Claws);
+                    DisableCollisions(true);
                 }
                 else
-                {
-                    isHolding = false;
-                    DropItem();
+                {   
+                    isHolding = false;   
+                    heldItem.DropItem();
+                    DisableCollisions(false);
+                    heldItem = null;
                 }
             }
         }
 
         private void FixedUpdate()
         {
-            CheckDownstairs();
+            if (!isHolding)
+            {
+                CheckDownstairs();
+            }       
         }
 
         private void CheckDownstairs()
@@ -44,7 +58,7 @@ namespace Palomas.Pigeon
 
             if (hit.collider != null && hit.transform.CompareTag("Item"))
             {
-                objectDownstairs = hit.transform.gameObject;
+                objectDownstairs = hit.transform;
                 canInteract = true;
             }
             else
@@ -54,25 +68,9 @@ namespace Palomas.Pigeon
             }
         }
 
-        private void TakeItem()
+        private void DisableCollisions(bool state)
         {
-            Rigidbody2D itemRb = objectDownstairs.GetComponent<Rigidbody2D>();
-
-            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), objectDownstairs.GetComponent<Collider2D>());
-
-            itemRb.isKinematic = true;
-
-            objectDownstairs.transform.parent = Claws;
-        }
-
-        private void DropItem()
-        {
-            objectDownstairs.transform.parent = null;
-
-            Rigidbody2D rb2D = objectDownstairs.GetComponent<Rigidbody2D>();
-            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), objectDownstairs.GetComponent<Collider2D>(), false);
-
-            rb2D.isKinematic = false;
+            Physics2D.IgnoreCollision(col, heldItem.GetItemCollider(), state);
         }
     }
 }
