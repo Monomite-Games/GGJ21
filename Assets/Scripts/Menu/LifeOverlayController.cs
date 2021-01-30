@@ -9,17 +9,19 @@ namespace Palomas.Menu
     {
         private GameEvents GameEvents => GameEvents.Instance;
 
-
-        private GameObject[] LifeImages;
+        public Image[] LifeImages;
+        private int innerCounter = GameConstants.MAX_LIFES - 1;
 
         private void Start()
         {
-            GameEvents.LifeLost += (sned, args) => UpdateLifeUI();
+            GameEvents.LifeLost += (send, args) => UpdateLifeUI();
         }
 
         private void UpdateLifeUI()
         {
+            LifeImages[innerCounter].enabled = false;
 
+            innerCounter--;
         }
     }
 }

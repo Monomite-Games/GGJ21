@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
+using Cinemachine;
 
 using Palomas.Items;
 using Palomas.Requests;
@@ -19,6 +21,9 @@ namespace Palomas
 
         [SerializeField]
         private ItemSpawner ItemSpawner;
+
+        public Image BlackFade;
+        public CinemachineVirtualCamera vCam;
 
         private int Lifes;
         private bool InPauseMenu = false;
@@ -74,8 +79,21 @@ namespace Palomas
             }
             else
             {
-                SpawnPigeon();
+                StartCoroutine(FadeIn());
+                Invoke(nameof(DisablePigeon), 1.5f);
+                Invoke(nameof(SpawnPigeon), 1.8f);
+                Invoke(nameof(ChangeCamFollow), 2f);
             }
+        }
+
+        private void ChangeCamFollow()
+        {
+            vCam.Follow = GameObject.Find("Pigeon").transform;
+        }
+
+        private void DisablePigeon()
+        {
+            GameObject.Find("Pigeon").GetComponent<PigeonManager>().Fenecimiento();
         }
 
         private void SpawnPigeon()
@@ -116,6 +134,35 @@ namespace Palomas
 
             yield return new WaitForSeconds(GameConstants.START_DELAY);
             SpawnRandomRequest();
+        }
+
+        protected IEnumerator FadeIn()
+        {
+            yield return new WaitForSeconds(0.5f);
+
+            BlackFade.gameObject.SetActive(true);
+
+            BlackFade.color = new Color(BlackFade.color.r, BlackFade.color.g, BlackFade.color.b, 0);
+            while (BlackFade.color.a < 1.0f)
+            {
+                BlackFade.color = new Color(BlackFade.color.r, BlackFade.color.g, BlackFade.color.b, BlackFade.color.a + (Time.deltaTime / 1f));
+                yield return null;
+            }
+            yield return new WaitForSeconds(1f);
+
+            StartCoroutine(FadeOut());
+        }
+
+        protected IEnumerator FadeOut()
+        {
+            BlackFade.color = new Color(BlackFade.color.r, BlackFade.color.g, BlackFade.color.b, 1);
+            while (BlackFade.color.a > 0.0f)
+            {
+                BlackFade.color = new Color(BlackFade.color.r, BlackFade.color.g, BlackFade.color.b, BlackFade.color.a - (Time.deltaTime / 1f));
+                yield return null;
+            }
+
+            BlackFade.gameObject.SetActive(false);
         }
     }
 }
