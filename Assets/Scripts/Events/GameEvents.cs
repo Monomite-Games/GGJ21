@@ -32,18 +32,19 @@ namespace Palomas
         public event EventHandler ToMainMenu;
         public event EventHandler ToPauseMenu;
         public event EventHandler BackFromPauseMenu;
+        public event EventHandler RestartLevel;
 
         public event EventHandler GamePrepared;
         public event EventHandler GameStart;
         public event EventHandler<GameEndEventArgs> GameEnd;
 
         public event EventHandler<RequestEventArgs> RequestObtained;
-        public event EventHandler<RequestEventArgs> RequestCompleted;
+        public event EventHandler<RequestItemEventArgs> RequestCompleted;
         public event EventHandler<RequestItemEventArgs> RequestChanged;
         public event EventHandler<ItemEventArgs> ItemDelivered;
         public event EventHandler<ItemEventArgs> ItemAttached;
         public event EventHandler<HealthEventArgs> HealthLost;
-        public event EventHandler<LifeEventArgs> LifeLost;
+        public event EventHandler LifeLost;
         public event EventHandler<ShitMeterEventArgs> ShitMeterChanged;
         public event EventHandler Shit;
 
@@ -60,6 +61,11 @@ namespace Palomas
         public void OnBackFromPauseMenu()
         {
             BackFromPauseMenu?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void OnRestartLevel()
+        {
+            RestartLevel?.Invoke(this, EventArgs.Empty);
         }
 
         public void OnGamePrepared()
@@ -84,9 +90,9 @@ namespace Palomas
             RequestObtained?.Invoke(this, eventArgs);
         }
 
-        public void OnRequestCompleted(string requestId)
+        public void OnRequestCompleted(string requestId, string itemId)
         {
-            RequestEventArgs eventArgs = new RequestEventArgs(requestId);
+            RequestItemEventArgs eventArgs = new RequestItemEventArgs(requestId, itemId);
             RequestCompleted?.Invoke(this, eventArgs);
         }
 
@@ -114,10 +120,9 @@ namespace Palomas
             HealthLost?.Invoke(this, eventArgs);
         }
 
-        public void OnLifeLost(int currentLifes)
+        public void OnLifeLost()
         {
-            LifeEventArgs eventArgs = new LifeEventArgs(currentLifes);
-            LifeLost?.Invoke(this, eventArgs);
+            LifeLost?.Invoke(this, EventArgs.Empty);
         }
 
         public void OnShitMeterChanged(int currentValue)
@@ -212,20 +217,6 @@ namespace Palomas
         {
             this.CurrentHealth = currentHealth;
             this.HealthRemoved = healthRemoved;
-        }
-    }
-
-    public class LifeEventArgs
-    {
-        public int CurrentLifes
-        {
-            get;
-            private set;
-        }
-
-        public LifeEventArgs(int currentLifes)
-        {
-            this.CurrentLifes = currentLifes;
         }
     }
 

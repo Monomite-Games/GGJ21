@@ -4,7 +4,7 @@ using Palomas.Requests;
 
 namespace Palomas.Menu
 {
-    public class PointerMover : MonoBehaviour
+    public class PointerController : MonoBehaviour
     {
         private GameEvents GameEvents => GameEvents.Instance;
         private RequestsList RequestsList => RequestsList.Instance;
@@ -24,8 +24,7 @@ namespace Palomas.Menu
         [SerializeField]
         private Camera UICamera;
 
-        [SerializeField]
-        private float BorderSize;
+        private float BorderSize = 50.0f;
 
         private Vector3 TargetPosition;
         private RectTransform PointerRectTransform;
@@ -99,7 +98,7 @@ namespace Palomas.Menu
             if(FirstTime)
             {
                 FirstTime = false;
-                GameEvents.OnRequestObtained(RequestId);
+                GameEvents.OnRequestObtained(Request.GetId());
             }
             Pointer.SetActive(false);
             RequestBubble.SetActive(true);
