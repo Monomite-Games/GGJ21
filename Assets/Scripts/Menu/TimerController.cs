@@ -41,7 +41,7 @@ namespace Palomas.Menu
                 yield return SecondDelay;
             }
 
-            GameEvents.OnGameEnd(GameEndState.Won);
+            GameEvents.OnTimerEnd();
         }
     }
 }
