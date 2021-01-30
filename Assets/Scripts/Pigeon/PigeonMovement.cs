@@ -139,15 +139,15 @@ namespace Palomas.Pigeon
 
             if (movement.x > 0f)
             {
-                rot = model.rotation.eulerAngles;
+                rot = transform.rotation.eulerAngles;
                 rot.y = 0f;
-                model.rotation = Quaternion.Euler(rot);
+                transform.rotation = Quaternion.Euler(rot);
             }
             else if (movement.x < 0f)
             {
-                rot = model.rotation.eulerAngles;
+                rot = transform.rotation.eulerAngles;
                 rot.y = 180f;
-                model.rotation = Quaternion.Euler(rot);
+                transform.rotation = Quaternion.Euler(rot);
             }
         }
     }
