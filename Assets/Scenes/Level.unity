@@ -439,7 +439,7 @@ MonoBehaviour:
   canInteract: 0
   isHolding: 0
   rayDistance: 0
-  objectDownstairs: {fileID: 0}
+  heldItem: {fileID: 0}
 --- !u!114 &98237760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,7 +453,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShitPrefab: {fileID: 4205850297352539575, guid: af267354127ac8443af250c81fdc62ac, type: 3}
-  ShitHolder: {fileID: 1167949112}
+  ShitHole: {fileID: 0}
+--- !u!1 &109839380 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2983998578132420733, guid: 6966b929b7c90704383a8e3617b61915, type: 3}
+  m_PrefabInstance: {fileID: 2983998579482016921}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &380009030
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,6 +489,11 @@ Transform:
   m_Father: {fileID: 675717884}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &473134155 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2983998578132420733, guid: 6966b929b7c90704383a8e3617b61915, type: 3}
+  m_PrefabInstance: {fileID: 2142268375}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &675717883
 GameObject:
   m_ObjectHideFlags: 0
@@ -910,11 +920,6 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 958915595}
---- !u!1 &1270317890 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2983998578335956955, guid: 6966b929b7c90704383a8e3617b61915, type: 3}
-  m_PrefabInstance: {fileID: 2983998579482016921}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1278104251
 GameObject:
   m_ObjectHideFlags: 0
@@ -1986,12 +1991,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b30ab9fd4eba294fa138cd8256bde05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RequestBubble: {fileID: 1270317890}
+  RequestBubble: {fileID: 109839380}
   RequestId: persona
   PointerPrefab: {fileID: 3100885988376605600, guid: 3e0e9fadf2d40b746a19a4564ad5d872, type: 3}
   PointersHolder: {fileID: 2071477201}
   UICamera: {fileID: 1491317191}
-  BorderSize: 50
 --- !u!114 &2071477203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2004,12 +2008,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b30ab9fd4eba294fa138cd8256bde05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RequestBubble: {fileID: 2142268378}
+  RequestBubble: {fileID: 473134155}
   RequestId: maria
   PointerPrefab: {fileID: 3100885988376605600, guid: 3e0e9fadf2d40b746a19a4564ad5d872, type: 3}
   PointersHolder: {fileID: 2071477201}
   UICamera: {fileID: 1491317191}
-  BorderSize: 50
 --- !u!1001 &2142268375
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2017,10 +2020,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1743361625}
     m_Modifications:
-    - target: {fileID: 2983998578335956955, guid: 6966b929b7c90704383a8e3617b61915, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2983998578335956958, guid: 6966b929b7c90704383a8e3617b61915, type: 3}
       propertyPath: m_Camera
       value: 
@@ -2099,11 +2098,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0fcff8ed80172140adcec98d38e3ae0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &2142268378 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2983998578335956955, guid: 6966b929b7c90704383a8e3617b61915, type: 3}
-  m_PrefabInstance: {fileID: 2142268375}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2983998579482016921
 PrefabInstance:
   m_ObjectHideFlags: 0

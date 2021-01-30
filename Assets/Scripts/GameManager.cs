@@ -55,8 +55,11 @@ namespace Palomas
             Request request = RequestsList.GetRandomUnused();
             Item item = ItemsList.GetRandomUnused();
 
-            GameEvents.OnRequestChanged(request.GetId(), item.GetId());
-            ItemSpawner.Spawn(item);
+            if(request != null)
+            {
+                GameEvents.OnRequestChanged(request.GetId(), item.GetId());
+                ItemSpawner.Spawn(item);
+            }
         }
 
         private void StartLevel()
@@ -76,6 +79,9 @@ namespace Palomas
             yield return new WaitForSeconds(GameConstants.START_DELAY);
             
             GameEvents.OnGameStart();
+            SpawnRandomRequest();
+
+            yield return new WaitForSeconds(GameConstants.START_DELAY);
             SpawnRandomRequest();
         }
     }
