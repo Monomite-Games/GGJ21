@@ -10,6 +10,7 @@
         public const int MANA_PER_DELAY = 2;
         public const int MAX_ACTIVE_REQUESTS = 2;
         public const int TIMER_SECONDS = 90;
+        public const int POINTS_PER_LEVEL = 15;
 
         public const string TAG_ITEM = "Item";
         public const string TAG_SHIT = "Shit";

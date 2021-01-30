@@ -39,11 +39,11 @@ namespace Palomas
         public event EventHandler<GameEndEventArgs> GameEnd;
 
         public event EventHandler<RequestEventArgs> RequestObtained;
-        public event EventHandler<RequestItemEventArgs> RequestCompleted;
+        public event EventHandler<RequestItemCompletedEventArgs> RequestCompleted;
         public event EventHandler<RequestItemEventArgs> RequestChanged;
         public event EventHandler<ItemEventArgs> ItemDelivered;
         public event EventHandler<ItemEventArgs> ItemAttached;
-        public event EventHandler<HealthEventArgs> HealthLost;
+        public event EventHandler<int> PointsChanged;
         public event EventHandler LifeLost;
         public event EventHandler<ShitMeterEventArgs> ShitMeterChanged;
         public event EventHandler Shit;
@@ -90,15 +90,15 @@ namespace Palomas
             RequestObtained?.Invoke(this, eventArgs);
         }
 
-        public void OnRequestCompleted(string requestId, string itemId)
+        public void OnRequestCompleted(string requestId, string itemId, int requestPoints)
         {
-            RequestItemEventArgs eventArgs = new RequestItemEventArgs(requestId, itemId);
+            RequestItemCompletedEventArgs eventArgs = new RequestItemCompletedEventArgs(requestId, itemId, requestPoints);
             RequestCompleted?.Invoke(this, eventArgs);
         }
 
-        public void OnRequestChanged(string requestId, string itemId)
+        public void OnRequestChanged(string requestId, string itemId, int spawnLevel)
         {
-            RequestItemEventArgs eventArgs = new RequestItemEventArgs(requestId, itemId);
+            RequestItemEventArgs eventArgs = new RequestItemEventArgs(requestId, itemId, spawnLevel);
             RequestChanged?.Invoke(this, eventArgs);
         }
 
@@ -114,10 +114,9 @@ namespace Palomas
             ItemAttached?.Invoke(this, eventArgs);
         }
 
-        public void OnHealthLost(int currentHealth, int healthRemoved)
+        public void OnPointsChanged(int currentPoints)
         {
-            HealthEventArgs eventArgs = new HealthEventArgs(currentHealth, healthRemoved);
-            HealthLost?.Invoke(this, eventArgs);
+            PointsChanged?.Invoke(this, currentPoints);
         }
 
         public void OnLifeLost()
@@ -186,16 +185,52 @@ namespace Palomas
             get;
             private set;
         }
+
         public string ItemId
         {
             get;
             private set;
         }
 
-        public RequestItemEventArgs(string requestId, string itemId)
+        public int SpawnLevel
+        {
+            get;
+            private set;
+        }
+
+        public RequestItemEventArgs(string requestId, string itemId, int spawnLevel)
         {
             this.RequestId = requestId;
             this.ItemId = itemId;
+            this.SpawnLevel = spawnLevel;
+        }
+    }
+
+    public class RequestItemCompletedEventArgs
+    {
+        public string RequestId
+        {
+            get;
+            private set;
+        }
+
+        public string ItemId
+        {
+            get;
+            private set;
+        }
+
+        public int RequestPoints
+        {
+            get;
+            private set;
+        }
+
+        public RequestItemCompletedEventArgs(string requestId, string itemId, int requestPoints)
+        {
+            this.RequestId = requestId;
+            this.ItemId = itemId;
+            this.RequestPoints = requestPoints;
         }
     }
 

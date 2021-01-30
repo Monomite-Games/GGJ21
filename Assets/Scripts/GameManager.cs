@@ -27,6 +27,7 @@ namespace Palomas
 
         private int Lifes;
         private bool InPauseMenu = false;
+        private int Points;
 
         private void Start()
         {
@@ -42,7 +43,7 @@ namespace Palomas
                 Lifes--;
                 RespawnPigeon();
             };
-            GameEvents.RequestCompleted += (sender, args) => { Invoke(nameof(SpawnRandomRequest), GameConstants.REQUEST_DELAY); };
+            GameEvents.RequestCompleted += (sender, args) => { CalculatePointsGained(args.RequestPoints); Invoke(nameof(SpawnRandomRequest), GameConstants.REQUEST_DELAY); };
 
             StartLevel();
         }
@@ -70,6 +71,12 @@ namespace Palomas
         private void GoToMainMenu()
         {
             SceneLoadManager.LoadMainMenuScene();
+        }
+
+        private void CalculatePointsGained(int requestPoints)
+        {
+            Points += requestPoints;
+            GameEvents.OnPointsChanged(Points);
         }
 
         private void RespawnPigeon()
@@ -109,14 +116,15 @@ namespace Palomas
 
             if(request != null)
             {
-                GameEvents.OnRequestChanged(request.GetId(), item.GetId());
-                ItemSpawner.Spawn(item);
+                int spawnLevel = ItemSpawner.Spawn(item);
+                GameEvents.OnRequestChanged(request.GetId(), item.GetId(), spawnLevel);
             }
         }
 
         private void StartLevel()
         {
             Lifes = GameConstants.MAX_LIFES;
+            Points = 0;
 
             StartCoroutine(DoStartLevel());
         }
