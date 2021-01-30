@@ -22,7 +22,7 @@ namespace Palomas.Items
             return spawnPoint.GetLevel();
         }
 
-        public void Spawn(string itemId)
+        public void Spawn(ItemTypes itemId)
         {
             Item item = RequestsList.GetById(itemId);
             Spawn(item);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Palomas.Items;
+using System;
 using UnityEngine;
 
 namespace Palomas
@@ -90,25 +91,25 @@ namespace Palomas
             RequestObtained?.Invoke(this, eventArgs);
         }
 
-        public void OnRequestCompleted(string requestId, string itemId, int requestPoints)
+        public void OnRequestCompleted(string requestId, ItemTypes itemId, int requestPoints)
         {
             RequestItemCompletedEventArgs eventArgs = new RequestItemCompletedEventArgs(requestId, itemId, requestPoints);
             RequestCompleted?.Invoke(this, eventArgs);
         }
 
-        public void OnRequestChanged(string requestId, string itemId, int spawnLevel)
+        public void OnRequestChanged(string requestId, ItemTypes itemId, int spawnLevel)
         {
             RequestItemEventArgs eventArgs = new RequestItemEventArgs(requestId, itemId, spawnLevel);
             RequestChanged?.Invoke(this, eventArgs);
         }
 
-        public void OnItemDelivered(string itemId)
+        public void OnItemDelivered(ItemTypes itemId)
         {
             ItemEventArgs eventArgs = new ItemEventArgs(itemId);
             ItemDelivered?.Invoke(this, eventArgs);
         }
 
-        public void OnItemAttached(string itemId)
+        public void OnItemAttached(ItemTypes itemId)
         {
             ItemEventArgs eventArgs = new ItemEventArgs(itemId);
             ItemAttached?.Invoke(this, eventArgs);
@@ -166,13 +167,13 @@ namespace Palomas
 
     public class ItemEventArgs
     {
-        public string ItemId
+        public ItemTypes ItemId
         {
             get;
             private set;
         }
 
-        public ItemEventArgs(string itemId)
+        public ItemEventArgs(ItemTypes itemId)
         {
             this.ItemId = itemId;
         }
@@ -186,7 +187,7 @@ namespace Palomas
             private set;
         }
 
-        public string ItemId
+        public ItemTypes ItemId
         {
             get;
             private set;
@@ -198,7 +199,7 @@ namespace Palomas
             private set;
         }
 
-        public RequestItemEventArgs(string requestId, string itemId, int spawnLevel)
+        public RequestItemEventArgs(string requestId, ItemTypes itemId, int spawnLevel)
         {
             this.RequestId = requestId;
             this.ItemId = itemId;
@@ -214,7 +215,7 @@ namespace Palomas
             private set;
         }
 
-        public string ItemId
+        public ItemTypes ItemId
         {
             get;
             private set;
@@ -226,7 +227,7 @@ namespace Palomas
             private set;
         }
 
-        public RequestItemCompletedEventArgs(string requestId, string itemId, int requestPoints)
+        public RequestItemCompletedEventArgs(string requestId, ItemTypes itemId, int requestPoints)
         {
             this.RequestId = requestId;
             this.ItemId = itemId;

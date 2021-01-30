@@ -7,7 +7,7 @@ namespace Palomas.Items
         private GameEvents GameEvents => GameEvents.Instance;
 
         [SerializeField]
-        private string Id;
+        private ItemTypes Id;
 
         [SerializeField]
         private GameObject Prefab;
@@ -17,7 +17,7 @@ namespace Palomas.Items
 
         private bool InUse;
 
-        public string GetId()
+        public ItemTypes GetId()
         {
             return Id;
         }

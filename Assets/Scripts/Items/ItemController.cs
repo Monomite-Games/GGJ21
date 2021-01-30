@@ -8,7 +8,7 @@ namespace Palomas.Items
         private Collider2D col;
 
         [SerializeField]
-        private string ItemId;
+        private ItemTypes ItemId;
         private bool isHeld;
 
         private void Start()
@@ -17,7 +17,7 @@ namespace Palomas.Items
             col = GetComponent<Collider2D>();
         }
 
-        public string GetItemId()
+        public ItemTypes GetItemId()
         {
             return this.ItemId;
         }

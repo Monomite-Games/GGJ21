@@ -11,7 +11,7 @@ namespace Palomas.Requests
         [SerializeField]
         private string Id;
         
-        private string ItemId;
+        private ItemTypes ItemId;
 
         private int Points;
 
@@ -19,22 +19,22 @@ namespace Palomas.Requests
 
         public string GetId()
         {
-            return this.Id;
+            return Id;
         }
 
-        public string GetItemId()
+        public ItemTypes GetItemId()
         {
-            return this.ItemId;
+            return ItemId;
         }
 
         public int GetPoints()
         {
-            return this.Points;
+            return Points;
         }
 
         public bool IsInUse()
         {
-            return this.InUse;
+            return InUse;
         }
 
         private void Start()
@@ -43,7 +43,7 @@ namespace Palomas.Requests
             GameEvents.RequestCompleted += (sender, args) => { if (args.RequestId.Equals(this.Id)) { OnCompleted(); } };
         }
 
-        private void Activate(string itemId, int spawnLevel)
+        private void Activate(ItemTypes itemId, int spawnLevel)
         {
             InUse = true;
             ItemId = itemId;
@@ -53,7 +53,7 @@ namespace Palomas.Requests
         private void OnCompleted()
         {
             InUse = false;
-            ItemId = string.Empty;
+            ItemId = ItemTypes.None;
             GameEvents.OnItemDelivered(ItemId);
         }
     }
