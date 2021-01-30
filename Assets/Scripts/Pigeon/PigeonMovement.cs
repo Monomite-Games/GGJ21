@@ -48,6 +48,8 @@ namespace Palomas.Pigeon
                 }
             }
 
+            RotateModel();
+
             FreeFall();
         }
 
@@ -127,6 +129,24 @@ namespace Palomas.Pigeon
             yield return new WaitForSeconds(timer/2f);
 
             isRecovering = false;
+        }
+
+        private void RotateModel()
+        {
+            Vector3 rot;
+
+            if (movement.x > 0f)
+            {
+                rot = model.rotation.eulerAngles;
+                rot.y = 0f;
+                model.rotation = Quaternion.Euler(rot);
+            }
+            else if (movement.x < 0f)
+            {
+                rot = model.rotation.eulerAngles;
+                rot.y = 180f;
+                model.rotation = Quaternion.Euler(rot);
+            }
         }
     }
 }

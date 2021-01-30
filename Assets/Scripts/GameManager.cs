@@ -28,14 +28,18 @@ namespace Palomas
             GameEvents.ToPauseMenu += (sender, args) => Time.timeScale = 0;
             GameEvents.BackFromPauseMenu += (sender, args) => Time.timeScale = 1;
 
-            GameEvents.LifeLost += (sender, args) => RespawnPigeon(args);
+            GameEvents.LifeLost += (sender, args) =>
+            {
+                Lifes--;
+                RespawnPigeon();
+            };
 
             StartLevel();
         }
 
-        private void RespawnPigeon(LifeEventArgs args)
+        private void RespawnPigeon()
         {
-            if(args.CurrentLifes.Equals(0))
+            if(Lifes.Equals(0))
             {
                 GameEvents.OnGameEnd(GameEndState.Lost);
             }

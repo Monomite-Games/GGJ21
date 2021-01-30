@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Palomas.Pigeon
 {
-    public class PigeonShitController : MonoBehaviour
+    public class ShitController : MonoBehaviour
     {
         [SerializeField] private Rigidbody2D rb;
         [SerializeField] private Collider2D col;
