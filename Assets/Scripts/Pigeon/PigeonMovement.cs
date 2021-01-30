@@ -8,7 +8,6 @@ namespace Palomas.Pigeon
         private GameEvents GameEvents => GameEvents.Instance;
 
         private Rigidbody2D rb;
-        public Transform model;
 
         [Space]
         [Header("Speeds")]
@@ -50,7 +49,7 @@ namespace Palomas.Pigeon
                 }
             }
 
-            RotateModel();
+            Rotate();
 
             FreeFall();
         }
@@ -133,7 +132,7 @@ namespace Palomas.Pigeon
             isRecovering = false;
         }
 
-        private void RotateModel()
+        private void Rotate()
         {
             Vector3 rot;
 
