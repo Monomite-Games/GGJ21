@@ -15,7 +15,8 @@ namespace Palomas.Pigeon
         {
             Transform spawnPoint = GameUtils.RandomElement<Transform>(SpawnPoints);
 
-            GameObject.Instantiate(PigeonPrefab, spawnPoint);
+            GameObject pigeon = GameObject.Instantiate(PigeonPrefab, spawnPoint);
+            pigeon.name = "Pigeon";
         }
     }
 }
