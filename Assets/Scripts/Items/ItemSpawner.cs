@@ -11,13 +11,15 @@ namespace Palomas.Items
         [SerializeField]
         private List<SpawnPointState> SpawnPoints;
 
-        public void Spawn(Item item)
+        public int Spawn(Item item)
         {
             ICollection<SpawnPointState> unusedSpawnPoints = SpawnPoints.Where<SpawnPointState>(state => !state.IsInUse()).ToList<SpawnPointState>();
             SpawnPointState spawnPoint = GameUtils.RandomElement<SpawnPointState>(unusedSpawnPoints);
 
             spawnPoint.SetItemId(item.GetId());
             GameObject.Instantiate(item.GetPrefab(), spawnPoint.transform);
+
+            return spawnPoint.GetLevel();
         }
 
         public void Spawn(string itemId)

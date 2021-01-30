@@ -25,14 +25,17 @@ namespace Palomas.Menu
 
         private void AddRequestToView(RequestEventArgs args)
         {
-            GameObject viewObject = GameObject.Instantiate(ViewPrefab, ViewHolder);
-            RequestView requestView = viewObject.GetComponent<RequestView>();
-            requestView.SetRequestId(args.RequestId);
+            if(!RequestViews.ContainsKey(args.RequestId))
+            {
+                GameObject viewObject = GameObject.Instantiate(ViewPrefab, ViewHolder);
+                RequestView requestView = viewObject.GetComponent<RequestView>();
+                requestView.SetRequestId(args.RequestId);
 
-            RequestViews.Add(args.RequestId, requestView);
+                RequestViews.Add(args.RequestId, requestView);
+            }
         }
 
-        private void SetRequestAsCompleted(RequestItemEventArgs args)
+        private void SetRequestAsCompleted(RequestItemCompletedEventArgs args)
         {
             //TODO animate
             if(RequestViews.TryGetValue(args.RequestId, out RequestView requestView))
