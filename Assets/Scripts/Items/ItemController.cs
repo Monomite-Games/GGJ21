@@ -19,17 +19,17 @@ namespace Palomas.Items
 
         public ItemTypes GetItemId()
         {
-            return this.ItemId;
+            return ItemId;
         }
 
         public bool GetItemstatus()
         {
-            return this.isHeld;
+            return isHeld;
         }
 
         public Collider2D GetItemCollider()
         {
-            return this.col;
+            return col;
         }
 
         public void TakeItem(Transform parent)
