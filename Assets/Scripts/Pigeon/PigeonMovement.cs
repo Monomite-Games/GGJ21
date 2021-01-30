@@ -116,7 +116,6 @@ namespace Palomas.Pigeon
         private IEnumerator Boost(float timer)
         {
             isRecovering = true;
-            Debug.Log(timer);
 
             if (moveInput.x != 0f)
             {

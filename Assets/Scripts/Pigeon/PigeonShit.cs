@@ -11,7 +11,7 @@ namespace Palomas.Pigeon
         private GameObject ShitPrefab;
 
         [SerializeField]
-        private Transform ShitHolder;
+        private Transform ShitHole;
 
         private int ShitMeter;
         private WaitForSeconds ManaDelay;
@@ -26,7 +26,7 @@ namespace Palomas.Pigeon
         {
             if (Input.GetKeyDown(KeyCode.F) && ShitMeter >= GameConstants.MAX_MANA)
             {
-                GameObject.Instantiate(ShitPrefab, ShitHolder);
+                GameObject.Instantiate(ShitPrefab, ShitHole.position, ShitHole.rotation);
                 GameEvents.OnShit();
                 ResetMana();
             }
