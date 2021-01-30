@@ -94,6 +94,7 @@ MonoBehaviour:
   isFluttering: 0
   isFreeFalling: 0
   isRecovering: 0
+  fallingTimer: 0
   moveInput: {x: 0, y: 0}
   movement: {x: 0, y: 0, z: 0}
 --- !u!114 &5506169369985274891
@@ -109,6 +110,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Claws: {fileID: 6380154767881952803}
+  canInteract: 0
+  isHolding: 0
+  rayDistance: 0.5
+  objectDownstairs: {fileID: 0}
 --- !u!1 &5962248729533212685
 GameObject:
   m_ObjectHideFlags: 0

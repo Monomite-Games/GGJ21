@@ -71,7 +71,7 @@ namespace Palomas.Pigeon
                 movement.x = moveInput.x * hSpeed;
             }
 
-            if (!isFreeFalling && !isFluttering && !isRecovering)
+            if (!isFreeFalling && !isFluttering)
             {
                 movement.y = moveInput.y * vSpeed;
             }
