@@ -32,6 +32,7 @@ namespace Palomas
         public event EventHandler ToMainMenu;
         public event EventHandler ToPauseMenu;
         public event EventHandler BackFromPauseMenu;
+        public event EventHandler RestartLevel;
 
         public event EventHandler GamePrepared;
         public event EventHandler GameStart;
@@ -60,6 +61,11 @@ namespace Palomas
         public void OnBackFromPauseMenu()
         {
             BackFromPauseMenu?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void OnRestartLevel()
+        {
+            RestartLevel?.Invoke(this, EventArgs.Empty);
         }
 
         public void OnGamePrepared()

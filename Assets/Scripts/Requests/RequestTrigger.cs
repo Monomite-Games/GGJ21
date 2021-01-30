@@ -15,7 +15,7 @@ namespace Palomas.Requests
             Request = GetComponentInParent<Request>();
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        private void OnTriggerStay2D(Collider2D other)
         {
             if (other.CompareTag(GameConstants.TAG_ITEM))
             {

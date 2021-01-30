@@ -14,12 +14,10 @@ namespace Palomas.Menu
         private Transform ItemHolder;
 
         private Request Request;
-        private Item Item;
 
         private void Start()
         {
             Request = GetComponentInParent<Request>();
-            Item = ItemsList.GetById(Request.GetItemId());
 
             GameEvents.RequestObtained += (sender, args) => { if (args.RequestId.Equals(Request.GetId())) { ChangeToObtained(); } };
             GameEvents.RequestCompleted += (sender, args) => { if (args.RequestId.Equals(Request.GetId())) { ChangeToCompleted(); } };
@@ -27,7 +25,8 @@ namespace Palomas.Menu
 
         private void ChangeToObtained()
         {
-            GameObject itemObject = GameObject.Instantiate(Item.GetPrefab(), ItemHolder);
+            Item item = ItemsList.GetById(Request.GetItemId());
+            GameObject itemObject = GameObject.Instantiate(item.GetPrefab(), ItemHolder);
             itemObject.GetComponent<BoxCollider2D>().enabled = false;
             itemObject.GetComponent<Rigidbody2D>().isKinematic = true;
             
