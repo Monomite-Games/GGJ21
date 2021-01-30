@@ -39,7 +39,7 @@ namespace Palomas
         public event EventHandler<GameEndEventArgs> GameEnd;
 
         public event EventHandler<RequestEventArgs> RequestObtained;
-        public event EventHandler<RequestEventArgs> RequestCompleted;
+        public event EventHandler<RequestItemEventArgs> RequestCompleted;
         public event EventHandler<RequestItemEventArgs> RequestChanged;
         public event EventHandler<ItemEventArgs> ItemDelivered;
         public event EventHandler<ItemEventArgs> ItemAttached;
@@ -90,9 +90,9 @@ namespace Palomas
             RequestObtained?.Invoke(this, eventArgs);
         }
 
-        public void OnRequestCompleted(string requestId)
+        public void OnRequestCompleted(string requestId, string itemId)
         {
-            RequestEventArgs eventArgs = new RequestEventArgs(requestId);
+            RequestItemEventArgs eventArgs = new RequestItemEventArgs(requestId, itemId);
             RequestCompleted?.Invoke(this, eventArgs);
         }
 
