@@ -41,7 +41,6 @@ namespace Palomas
             StartLevel();
         }
 
-        private void RespawnPigeon()
         private void Update()
         {
             if(Input.GetKeyDown(KeyCode.Escape))
@@ -67,7 +66,7 @@ namespace Palomas
             SceneLoadManager.LoadMainMenuScene();
         }
 
-        private void RespawnPigeon(LifeEventArgs args)
+        private void RespawnPigeon()
         {
             if(Lifes.Equals(0))
             {
