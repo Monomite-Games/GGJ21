@@ -8,31 +8,27 @@ namespace Palomas.Pigeon
     {
         public Transform Claws;
 
-        private bool canInteract = false;
-        private bool isHolding = false;
+        public bool canInteract = false;
+        public bool isHolding = false;
 
-        private RaycastHit focus;
-        private Rigidbody nearestItem;
+        public float rayDistance;
+
+        public GameObject objectDownstairs;
 
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.E) && canInteract)
             {
-                nearestItem = focus.collider.transform.GetComponent<Rigidbody>();
-
-                if (nearestItem != null)
+                if (!isHolding)
                 {
-                    if (!isHolding)
-                    {
-                        isHolding = true;
-                        TakeItem();
-                        Debug.Log("coger");
-                    }
-                    else
-                    {
-                        isHolding = false;
-                        DropItem();
-                    }
+                    isHolding = true;
+                    TakeItem();
+                    Debug.Log("coger");
+                }
+                else
+                {
+                    isHolding = false;
+                    DropItem();
                 }
             }
         }
@@ -44,29 +40,39 @@ namespace Palomas.Pigeon
 
         private void CheckDownstairs()
         {
-            float distance = 1.5f;
+            RaycastHit2D hit = Physics2D.Raycast(Claws.position, -Vector2.up, rayDistance);
 
-            if (Physics.Raycast(transform.position, Vector3.down, out focus, distance) && focus.collider.transform.CompareTag("Item"))
+            if (hit.collider != null && hit.transform.CompareTag("Item"))
             {
+                objectDownstairs = hit.transform.gameObject;
                 canInteract = true;
             }
             else
             {
+                objectDownstairs = null;
                 canInteract = false;
             }
         }
 
         private void TakeItem()
         {
-            nearestItem.useGravity = false;
-            nearestItem.transform.parent = Claws;
+            Rigidbody2D itemRb = objectDownstairs.GetComponent<Rigidbody2D>();
+
+            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), objectDownstairs.GetComponent<Collider2D>());
+
+            itemRb.isKinematic = true;
+
+            objectDownstairs.transform.parent = Claws;
         }
 
         private void DropItem()
         {
-            nearestItem.useGravity = true;
-            nearestItem.isKinematic = false;
-            nearestItem.transform.parent = null;
+            objectDownstairs.transform.parent = null;
+
+            Rigidbody2D rb2D = objectDownstairs.GetComponent<Rigidbody2D>();
+            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), objectDownstairs.GetComponent<Collider2D>(), false);
+
+            rb2D.isKinematic = false;
         }
     }
 }

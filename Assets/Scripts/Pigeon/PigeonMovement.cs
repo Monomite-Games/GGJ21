@@ -9,7 +9,7 @@ namespace Palomas.Pigeon
         public Transform model;
 
         [Space]
-
+        [Header("Speeds")]
         [SerializeField] private float hSpeed;
         [SerializeField] private float vSpeed;
         [SerializeField] private float flutterSpeed;
@@ -17,13 +17,17 @@ namespace Palomas.Pigeon
         [SerializeField] private float boostSpeed;
 
         [Space]
-
+        [Header("State")]
         public bool isFluttering = false;
         public bool isFreeFalling = false;
         public bool isRecovering = false;
 
         [Space]
+        [Header("Timers")]
+        public float fallingTimer = 0f;
 
+        [Space]
+        [Header("Inputs")]
         public Vector2 moveInput;
         public Vector3 movement;
 
@@ -67,7 +71,7 @@ namespace Palomas.Pigeon
                 movement.x = moveInput.x * hSpeed;
             }
 
-            if (!isFreeFalling && !isFluttering)
+            if (!isFreeFalling && !isFluttering && !isRecovering)
             {
                 movement.y = moveInput.y * vSpeed;
             }
@@ -90,6 +94,8 @@ namespace Palomas.Pigeon
         {
             if (!isFluttering && Input.GetKeyDown(KeyCode.LeftShift))
             {
+                fallingTimer = Time.time;
+
                 isFreeFalling = true;
                 movement.y = -fallSpeed;
             }
@@ -99,25 +105,32 @@ namespace Palomas.Pigeon
                 isFreeFalling = false;
                 movement.y = 0.5f;
 
-                StartCoroutine(Boost());
+                fallingTimer = Time.time - fallingTimer;
+
+                StartCoroutine(Boost(fallingTimer));
+
+                fallingTimer = 0f;
             }
         }
 
-        private IEnumerator Boost()
+        private IEnumerator Boost(float timer)
         {
             isRecovering = true;
+            Debug.Log(timer);
 
             if (moveInput.x == 0f)
             {
-                movement.x = model.right.x * boostSpeed;
+                movement.x = model.right.x;
             }
             else
             {
-                movement.x = moveInput.x * boostSpeed;
+                movement.x = moveInput.x;
             }
+            movement.x *= boostSpeed;
             movement.y = 3f;
 
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(timer/2f);
+
             isRecovering = false;
         }
     }
