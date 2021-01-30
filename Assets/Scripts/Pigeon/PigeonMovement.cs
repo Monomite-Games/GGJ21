@@ -5,21 +5,31 @@ namespace Palomas.Pigeon
 {
     public class PigeonMovement : MonoBehaviour
     {
-        private Rigidbody rb;
+        private Rigidbody2D rb;
+        public Transform model;
+
+        [Space]
 
         [SerializeField] private float hSpeed;
         [SerializeField] private float vSpeed;
         [SerializeField] private float flutterSpeed;
+        [SerializeField] private float fallSpeed;
+        [SerializeField] private float boostSpeed;
 
-        private bool isFluttering = false;
-        private bool isFreeFalling = false;
+        [Space]
+
+        public bool isFluttering = false;
+        public bool isFreeFalling = false;
+        public bool isRecovering = false;
+
+        [Space]
 
         public Vector2 moveInput;
-        private Vector3 movement;
+        public Vector3 movement;
 
         private void Start()
         {
-            rb = GetComponent<Rigidbody>();
+            rb = GetComponent<Rigidbody2D>();
         }
 
         private void Update()
@@ -28,7 +38,7 @@ namespace Palomas.Pigeon
 
             if (Input.GetKeyDown(KeyCode.Space) && !isFluttering)
             {
-                if (!isFreeFalling)
+                if (!isFreeFalling || !isRecovering)
                 {
                     StartCoroutine(Flutter());
                 }
@@ -52,29 +62,26 @@ namespace Palomas.Pigeon
 
         private void Movement()
         {
-            movement.x = moveInput.x * hSpeed;
+            if (!isRecovering)
+            {
+                movement.x = moveInput.x * hSpeed;
+            }
 
-            if (!isFreeFalling)
+            if (!isFreeFalling && !isFluttering)
             {
                 movement.y = moveInput.y * vSpeed;
             }
-            else
-            {
-                movement.y = 0f;
-            }
 
-            movement *= Time.deltaTime;
-
-            rb.MovePosition(transform.position + movement);
+            rb.velocity = new Vector3(movement.x, movement.y, 0f);
         }
 
         private IEnumerator Flutter()
         {
             isFluttering = true;
 
-            rb.velocity = new Vector3(rb.velocity.x, flutterSpeed, rb.velocity.z);
-            yield return new WaitForSeconds(0.5f);
-            rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+            movement.y = flutterSpeed;
+            yield return new WaitForSeconds(0.7f);
+            movement.y = 0.5f;
 
             isFluttering = false;
         }
@@ -84,14 +91,34 @@ namespace Palomas.Pigeon
             if (!isFluttering && Input.GetKeyDown(KeyCode.LeftShift))
             {
                 isFreeFalling = true;
-                rb.useGravity = true;
+                movement.y = -fallSpeed;
             }
 
             if (!isFluttering && Input.GetKeyUp(KeyCode.LeftShift))
             {
                 isFreeFalling = false;
-                rb.useGravity = false;
+                movement.y = 0.5f;
+
+                StartCoroutine(Boost());
             }
+        }
+
+        private IEnumerator Boost()
+        {
+            isRecovering = true;
+
+            if (moveInput.x == 0f)
+            {
+                movement.x = model.right.x * boostSpeed;
+            }
+            else
+            {
+                movement.x = moveInput.x * boostSpeed;
+            }
+            movement.y = 3f;
+
+            yield return new WaitForSeconds(1f);
+            isRecovering = false;
         }
     }
 }
