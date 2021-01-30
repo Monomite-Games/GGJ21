@@ -38,6 +38,7 @@ namespace Palomas
         public event EventHandler GamePrepared;
         public event EventHandler GameStart;
         public event EventHandler<GameEndEventArgs> GameEnd;
+        public event EventHandler TimerEnd;
 
         public event EventHandler<RequestEventArgs> RequestObtained;
         public event EventHandler<RequestItemCompletedEventArgs> RequestCompleted;
@@ -79,10 +80,15 @@ namespace Palomas
             GameStart?.Invoke(this, EventArgs.Empty);
         }
 
-        public void OnGameEnd(GameEndState endState)
+        public void OnGameEnd(GameEndState endState, int points = 0, int lifes = 0)
         {
-            GameEndEventArgs eventArgs = new GameEndEventArgs(endState);
+            GameEndEventArgs eventArgs = new GameEndEventArgs(endState, points, lifes);
             GameEnd?.Invoke(this, eventArgs);
+        }
+
+        public void OnTimerEnd()
+        {
+            TimerEnd?.Invoke(this, EventArgs.Empty);
         }
 
         public void OnRequestObtained(string requestId)
@@ -145,9 +151,23 @@ namespace Palomas
             private set;
         }
 
-        public GameEndEventArgs(GameEndState endState)
+        public int Points
+        {
+            get;
+            private set;
+        }
+
+        public int Lifes
+        {
+            get;
+            private set;
+        }
+
+        public GameEndEventArgs(GameEndState endState, int points, int lifes)
         {
             this.EndState = endState;
+            this.Points = points;
+            this.Lifes = lifes;
         }
     }
 

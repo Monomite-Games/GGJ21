@@ -38,11 +38,9 @@ namespace Palomas
             GameEvents.RestartLevel += (sender, args) => RestartLevel();
             GameEvents.ToMainMenu += (sender, args) => GoToMainMenu();
 
-            GameEvents.LifeLost += (sender, args) =>
-            {
-                Lifes--;
-                RespawnPigeon();
-            };
+            GameEvents.TimerEnd += (sender, args) => GameEvents.OnGameEnd(GameEndState.Won, Points, Lifes);
+
+            GameEvents.LifeLost += (sender, args) => RespawnPigeon();
             GameEvents.RequestCompleted += (sender, args) => { CalculatePointsGained(args.RequestPoints); Invoke(nameof(SpawnRandomRequest), GameConstants.REQUEST_DELAY); };
 
             StartLevel();
@@ -81,6 +79,7 @@ namespace Palomas
 
         private void RespawnPigeon()
         {
+            Lifes--;
             if(Lifes.Equals(0))
             {
                 GameEvents.OnGameEnd(GameEndState.Lost);
