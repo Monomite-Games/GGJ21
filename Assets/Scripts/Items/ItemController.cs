@@ -4,8 +4,6 @@ namespace Palomas.Items
 {
     public class ItemController : MonoBehaviour
     {
-        private GameEvents GameEvents => GameEvents.Instance;
-
         private Rigidbody2D rb;
         private Collider2D col;
 
@@ -15,8 +13,6 @@ namespace Palomas.Items
 
         private void Start()
         {
-            GameEvents.ItemDelivered += (sender, args) => { if (args.ItemId.Equals(this.ItemId)) { Disappear(); } };
-
             rb = GetComponent<Rigidbody2D>();
             col = GetComponent<Collider2D>();
         }
@@ -53,7 +49,6 @@ namespace Palomas.Items
         public void Disappear()
         {
             //TODO
-            Debug.Log("Item delivered: " + ItemId);
             Destroy(gameObject);
         }
     }

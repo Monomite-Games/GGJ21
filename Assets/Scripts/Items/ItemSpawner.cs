@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Palomas.Items
@@ -8,13 +9,15 @@ namespace Palomas.Items
         private ItemsList RequestsList => ItemsList.Instance;
 
         [SerializeField]
-        private List<Transform> SpawnPoints;
+        private List<SpawnPointState> SpawnPoints;
 
         public void Spawn(Item item)
         {
-            Transform spawnPoint = GameUtils.RandomElement<Transform>(SpawnPoints);
+            ICollection<SpawnPointState> unusedSpawnPoints = SpawnPoints.Where<SpawnPointState>(state => !state.IsInUse()).ToList<SpawnPointState>();
+            SpawnPointState spawnPoint = GameUtils.RandomElement<SpawnPointState>(unusedSpawnPoints);
 
-            GameObject.Instantiate(item.GetPrefab(), spawnPoint);
+            spawnPoint.SetItemId(item.GetId());
+            GameObject.Instantiate(item.GetPrefab(), spawnPoint.transform);
         }
 
         public void Spawn(string itemId)

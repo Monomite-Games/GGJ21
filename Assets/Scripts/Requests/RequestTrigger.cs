@@ -22,7 +22,8 @@ namespace Palomas.Requests
                 ItemController item = other.gameObject.GetComponent<ItemController>();
                 if (Request.IsInUse() && !item.GetItemstatus() && item.GetItemId().Equals(Request.GetItemId()))
                 {
-                    GameEvents.OnRequestCompleted(Request.GetId());
+                    item.Disappear();
+                    GameEvents.OnRequestCompleted(Request.GetId(), Request.GetItemId());
                 }
             }
         }
