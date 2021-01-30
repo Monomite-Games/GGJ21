@@ -22,7 +22,7 @@ namespace Palomas.Menu
 
         private void UpdatePoints(int currentPoints)
         {
-            PointsText.text = currentPoints.ToString() + " $";
+            PointsText.text = currentPoints.ToString() + " " + Suffix;
         }
     }
 }
