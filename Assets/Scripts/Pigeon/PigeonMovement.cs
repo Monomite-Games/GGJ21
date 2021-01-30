@@ -32,6 +32,11 @@ namespace Palomas.Pigeon
         public Vector2 moveInput;
         public Vector3 movement;
 
+        [Space]
+        [Header("Particles")]
+        public ParticleSystem FlutterParticle;
+        public ParticleSystem MovementParticle;
+
         private void Start()
         {
             rb = GetComponent<Rigidbody2D>();
@@ -52,6 +57,8 @@ namespace Palomas.Pigeon
             Rotate();
 
             FreeFall();
+
+            PlayMoveParticles();
         }
 
         private void FixedUpdate()
@@ -85,6 +92,8 @@ namespace Palomas.Pigeon
         private IEnumerator Flutter()
         {
             isFluttering = true;
+
+            PlayFlutterParticles();
 
             movement.y = flutterSpeed;
             yield return new WaitForSeconds(0.7f);
@@ -148,6 +157,31 @@ namespace Palomas.Pigeon
                 rot.y = 180f;
                 transform.rotation = Quaternion.Euler(rot);
             }
+        }
+
+        private void PlayMoveParticles()
+        {
+            if (movement != Vector3.zero)
+            {
+                if (!MovementParticle.isPlaying)
+                {
+                    MovementParticle.Play();
+                }
+            }
+            else
+            {
+                MovementParticle.Stop();
+            }
+        }
+
+        private void PlayFlutterParticles()
+        {
+            if (FlutterParticle.isPlaying)
+            {
+                FlutterParticle.Stop();
+            }
+
+            FlutterParticle.Play();
         }
     }
 }
