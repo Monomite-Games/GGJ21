@@ -28,12 +28,12 @@ namespace Palomas.Items
         [SerializeField]
         private List<Item> Items;
 
-        private IDictionary<string, Item> ItemsMap;
+        private IDictionary<ItemTypes, Item> ItemsMap;
 
         private void Awake()
         {
             CreateSingleton();
-            ItemsMap = new Dictionary<string, Item>();
+            ItemsMap = new Dictionary<ItemTypes, Item>();
 
             FillMap();
         }
@@ -46,7 +46,7 @@ namespace Palomas.Items
             }
         }
 
-        public Item GetById(string id)
+        public Item GetById(ItemTypes id)
         {
             if(ItemsMap.TryGetValue(id, out Item item))
             {

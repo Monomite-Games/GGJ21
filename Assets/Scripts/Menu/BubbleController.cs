@@ -26,6 +26,12 @@ namespace Palomas.Menu
         private void ChangeToObtained()
         {
             Item item = ItemsList.GetById(Request.GetItemId());
+
+            for (int childIndex = 0; childIndex < ItemHolder.childCount; childIndex++)
+            {
+                Destroy(ItemHolder.GetChild(childIndex).gameObject);
+            }
+
             GameObject itemObject = GameObject.Instantiate(item.GetPrefab(), ItemHolder);
             itemObject.GetComponent<BoxCollider2D>().enabled = false;
             itemObject.GetComponent<Rigidbody2D>().isKinematic = true;

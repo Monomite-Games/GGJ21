@@ -9856,8 +9856,8 @@ MonoBehaviour:
   fallingTimer: 0
   moveInput: {x: 0, y: 0}
   movement: {x: 0, y: 0, z: 0}
-  FlutterParticle: {fileID: 0}
-  MovementParticle: {fileID: 0}
+  FlutterParticle: {fileID: 5114008902431592085}
+  MovementParticle: {fileID: 7396988065654957852}
 --- !u!114 &5506169369985274891
 MonoBehaviour:
   m_ObjectHideFlags: 0

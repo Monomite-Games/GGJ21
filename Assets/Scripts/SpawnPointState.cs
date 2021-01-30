@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Palomas.Items;
+using UnityEngine;
 
 namespace Palomas
 {
@@ -6,13 +7,13 @@ namespace Palomas
     {
         private GameEvents GameEvents => GameEvents.Instance;
 
-        private string ItemId = string.Empty;
+        private ItemTypes ItemId = ItemTypes.None;
 
         [SerializeField]
         private int Level = 1;
-        private bool InUse => !string.IsNullOrEmpty(ItemId);
+        private bool InUse => ItemId != ItemTypes.None;
 
-        public void SetItemId(string itemId)
+        public void SetItemId(ItemTypes itemId)
         {
             ItemId = itemId;
         }
@@ -34,7 +35,7 @@ namespace Palomas
 
         private void Deactivate()
         {
-            ItemId = string.Empty;
+            ItemId = ItemTypes.None;
         }
     }
 }
