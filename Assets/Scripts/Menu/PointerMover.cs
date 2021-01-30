@@ -4,8 +4,13 @@ namespace Palomas.Menu
 {
     public class PointerMover : MonoBehaviour
     {
+        private GameEvents GameEvents => GameEvents.Instance;
+
         [SerializeField]
         private GameObject RequestBubble;
+
+        [SerializeField]
+        private string RequestId;
 
         [SerializeField]
         private GameObject PointerPrefab;
@@ -22,6 +27,7 @@ namespace Palomas.Menu
         private Vector3 targetPosition;
         private RectTransform pointerRectTransform;
         private GameObject Pointer;
+        private bool FirstTime = true;
 
         private void Awake()
         {
@@ -76,6 +82,11 @@ namespace Palomas.Menu
 
         private void EnableBubble()
         {
+            if(FirstTime)
+            {
+                FirstTime = false;
+                GameEvents.OnRequestObtained(RequestId);
+            }
             RequestBubble.SetActive(true);
             Pointer.SetActive(false);
         }

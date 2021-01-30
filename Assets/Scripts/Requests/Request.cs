@@ -9,26 +9,37 @@ namespace Palomas.Requests
         private GameEvents GameEvents => GameEvents.Instance;
 
         [SerializeField]
-        private int Id;
+        private string Id;
 
         [SerializeField]
-        private int ItemId;
+        private string ItemId;
 
-        private bool IsCompleted = false;
+        private bool Completed = false;
 
-        private void OnTriggerEnter(Collider other)
+        public string GetId()
         {
-            if(other.CompareTag(GameConstants.TAG_ITEM))
-            {
-                Item item = other.gameObject.GetComponent<Item>();
-                if(!IsCompleted && item.GetId().Equals(this.ItemId))
-                {
-                    IsCompleted = true;
-                    item.Disappear();
+            return this.Id;
+        }
 
-                    GameEvents.OnRequestCompleted(Id);
-                }
-            }
+        public string GetItemId()
+        {
+            return this.ItemId;
+        }
+
+        public bool IsCompleted()
+        {
+            return this.Completed;
+        }
+
+        private void Start()
+        {
+            GameEvents.RequestCompleted += (sender, args) => OnCompleted();
+        }
+
+        private void OnCompleted()
+        {
+            Completed = true;
+            GameEvents.OnItemDelivered(ItemId);
         }
     }
 }
