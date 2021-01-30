@@ -9,8 +9,10 @@
         public const int MAX_MANA = 50;
         public const int MANA_PER_DELAY = 2;
         public const int MAX_ACTIVE_REQUESTS = 2;
+        public const int TIMER_SECONDS = 90;
 
         public const string TAG_ITEM = "Item";
         public const string TAG_SHIT = "Shit";
+        public const string TAG_PIGEON = "Pigeon";
     }
 }
