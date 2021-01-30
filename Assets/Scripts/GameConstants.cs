@@ -9,5 +9,6 @@
         public const int MANA_PER_DELAY = 2;
 
         public const string TAG_ITEM = "Item";
+        public const string TAG_SHIT = "Shit";
     }
 }
