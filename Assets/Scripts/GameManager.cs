@@ -10,6 +10,7 @@ namespace Palomas
     public class GameManager : MonoBehaviour
     {
         private GameEvents GameEvents => GameEvents.Instance;
+        private SceneLoadManager SceneLoadManager => SceneLoadManager.Instance;
         private RequestsList RequestsList => RequestsList.Instance;
         private ItemsList ItemsList => ItemsList.Instance;
 
@@ -20,17 +21,45 @@ namespace Palomas
         private ItemSpawner ItemSpawner;
 
         private int Lifes;
+        private bool InPauseMenu = false;
 
         private void Start()
         {
             Time.timeScale = 1;
 
-            GameEvents.ToPauseMenu += (sender, args) => Time.timeScale = 0;
-            GameEvents.BackFromPauseMenu += (sender, args) => Time.timeScale = 1;
+            GameEvents.ToPauseMenu += (sender, args) => { Time.timeScale = 0; InPauseMenu = true; };
+            GameEvents.BackFromPauseMenu += (sender, args) => { Time.timeScale = 1; InPauseMenu = false; };
+            GameEvents.RestartLevel += (sender, args) => RestartLevel();
+            GameEvents.ToMainMenu += (sender, args) => GoToMainMenu();
 
             GameEvents.LifeLost += (sender, args) => RespawnPigeon(args);
 
             StartLevel();
+        }
+
+        private void Update()
+        {
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                if(InPauseMenu)
+                {
+                    GameEvents.OnBackFromPauseMenu();
+                }
+                else
+                {
+                    GameEvents.OnToPauseMenu();
+                }
+            }
+        }
+
+        private void RestartLevel()
+        {
+            SceneLoadManager.RestartScene();
+        }
+
+        private void GoToMainMenu()
+        {
+            SceneLoadManager.LoadMainMenuScene();
         }
 
         private void RespawnPigeon(LifeEventArgs args)
