@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 5743995709804279802}
   - component: {fileID: 693839575879360797}
   - component: {fileID: 8216727698206746707}
-  - component: {fileID: 3639505619977321744}
-  - component: {fileID: 6589773517686047828}
+  - component: {fileID: 2784093894250216998}
+  - component: {fileID: 8605673476758573565}
   - component: {fileID: 408935870093089049}
   m_Layer: 0
   m_Name: Shit
@@ -84,36 +84,43 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &3639505619977321744
-CapsuleCollider:
+--- !u!50 &2784093894250216998
+Rigidbody2D:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4205850297352539575}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!70 &8605673476758573565
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4205850297352539575}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &6589773517686047828
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4205850297352539575}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 2}
+  m_Direction: 0
 --- !u!114 &408935870093089049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,3 +133,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b3ea85c21a4f814b9d74f735e4b34d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 2784093894250216998}
+  col: {fileID: 8605673476758573565}

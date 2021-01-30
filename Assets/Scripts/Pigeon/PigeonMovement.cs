@@ -116,18 +116,13 @@ namespace Palomas.Pigeon
         private IEnumerator Boost(float timer)
         {
             isRecovering = true;
-            Debug.Log(timer);
 
-            if (moveInput.x == 0f)
-            {
-                movement.x = model.right.x;
-            }
-            else
+            if (moveInput.x != 0f)
             {
                 movement.x = moveInput.x;
+                movement.y = 3f;
             }
             movement.x *= boostSpeed;
-            movement.y = 3f;
 
             yield return new WaitForSeconds(timer/2f);
 
