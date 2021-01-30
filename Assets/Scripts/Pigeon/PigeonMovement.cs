@@ -8,6 +8,7 @@ namespace Palomas.Pigeon
         private GameEvents GameEvents => GameEvents.Instance;
 
         private Rigidbody2D rb;
+        private Animator animator;
 
         [Space]
         [Header("Speeds")]
@@ -40,11 +41,13 @@ namespace Palomas.Pigeon
         private void Start()
         {
             rb = GetComponent<Rigidbody2D>();
+            animator = transform.GetChild(0).GetComponent<Animator>();
         }
 
         private void Update()
         {
             GetMoveInputs();
+            ChangeAnimLayer();
 
             if (Input.GetKeyDown(KeyCode.Space) && !isFluttering)
             {
@@ -56,7 +59,10 @@ namespace Palomas.Pigeon
 
             Rotate();
 
-            FreeFall();
+            if (!isFluttering)
+            {
+                FreeFall();
+            }
 
             PlayMoveParticles();
         }
@@ -72,6 +78,8 @@ namespace Palomas.Pigeon
                 Input.GetAxis("Horizontal"),
                 Input.GetAxis("Vertical"));
             moveInput.Normalize();
+
+            animator.SetBool("isMoving", moveInput != Vector2.zero);
         }
 
         private void Movement()
@@ -91,6 +99,8 @@ namespace Palomas.Pigeon
 
         private IEnumerator Flutter()
         {
+            animator.SetTrigger("isFluttering");
+
             isFluttering = true;
 
             PlayFlutterParticles();
@@ -104,15 +114,16 @@ namespace Palomas.Pigeon
 
         private void FreeFall()
         {
-            if (!isFluttering && Input.GetKeyDown(KeyCode.LeftShift))
+            if (Input.GetKeyDown(KeyCode.LeftShift))
             {
+                isFreeFalling = true;
+
                 fallingTimer = Time.time;
 
-                isFreeFalling = true;
                 movement.y = -fallSpeed;
             }
 
-            if (!isFluttering && Input.GetKeyUp(KeyCode.LeftShift))
+            if (Input.GetKeyUp(KeyCode.LeftShift))
             {
                 isFreeFalling = false;
                 movement.y = 0.5f;
@@ -136,7 +147,7 @@ namespace Palomas.Pigeon
             }
             movement.x *= boostSpeed;
 
-            yield return new WaitForSeconds(timer/2f);
+            yield return new WaitForSeconds(timer / 2f);
 
             isRecovering = false;
         }
@@ -182,6 +193,18 @@ namespace Palomas.Pigeon
             }
 
             FlutterParticle.Play();
+        }
+
+        private void ChangeAnimLayer()
+        {
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Vuelo"))
+            {
+                animator.SetLayerWeight(animator.GetLayerIndex("Oscilation"), 1f);
+            }
+            else
+            {
+                animator.SetLayerWeight(animator.GetLayerIndex("Oscilation"), 0f);
+            }
         }
     }
 }
