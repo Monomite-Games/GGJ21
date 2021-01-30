@@ -13,6 +13,8 @@ namespace Palomas.Requests
         
         private string ItemId;
 
+        private int Points;
+
         private bool InUse = false;
 
         public string GetId()
@@ -25,6 +27,11 @@ namespace Palomas.Requests
             return this.ItemId;
         }
 
+        public int GetPoints()
+        {
+            return this.Points;
+        }
+
         public bool IsInUse()
         {
             return this.InUse;
@@ -32,19 +39,21 @@ namespace Palomas.Requests
 
         private void Start()
         {
-            GameEvents.RequestChanged += (sender, args) => { if (args.RequestId.Equals(this.Id)) { Activate(args.ItemId); } };
+            GameEvents.RequestChanged += (sender, args) => { if (args.RequestId.Equals(this.Id)) { Activate(args.ItemId, args.SpawnLevel); } };
             GameEvents.RequestCompleted += (sender, args) => { if (args.RequestId.Equals(this.Id)) { OnCompleted(); } };
         }
 
-        private void Activate(string itemId)
+        private void Activate(string itemId, int spawnLevel)
         {
             InUse = true;
             ItemId = itemId;
+            Points = spawnLevel * GameConstants.POINTS_PER_LEVEL;
         }
 
         private void OnCompleted()
         {
             InUse = false;
+            ItemId = string.Empty;
             GameEvents.OnItemDelivered(ItemId);
         }
     }

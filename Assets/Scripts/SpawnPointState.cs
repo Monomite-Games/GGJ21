@@ -7,11 +7,19 @@ namespace Palomas
         private GameEvents GameEvents => GameEvents.Instance;
 
         private string ItemId = string.Empty;
+
+        [SerializeField]
+        private int Level = 1;
         private bool InUse => !string.IsNullOrEmpty(ItemId);
 
         public void SetItemId(string itemId)
         {
             ItemId = itemId;
+        }
+
+        public int GetLevel()
+        {
+            return Level;
         }
 
         public bool IsInUse()

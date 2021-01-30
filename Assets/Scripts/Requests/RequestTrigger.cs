@@ -23,7 +23,7 @@ namespace Palomas.Requests
                 if (Request.IsInUse() && !item.GetItemstatus() && item.GetItemId().Equals(Request.GetItemId()))
                 {
                     item.Disappear();
-                    GameEvents.OnRequestCompleted(Request.GetId(), Request.GetItemId());
+                    GameEvents.OnRequestCompleted(Request.GetId(), Request.GetItemId(), Request.GetPoints());
                 }
             }
         }
