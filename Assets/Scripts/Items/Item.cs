@@ -5,18 +5,19 @@ namespace Palomas.Items
     public class Item : MonoBehaviour
     {
         [SerializeField]
-        private int Id;
+        private string Id;
 
-        public int GetId()
+        [SerializeField]
+        private GameObject ItemPrefab;
+
+        public string GetId()
         {
             return Id;
         }
 
-        public void Disappear()
+        public GameObject GetItemPrefab()
         {
-            //TODO
-            Debug.Log("Item delivered: " + Id);
-            Destroy(gameObject);
+            return ItemPrefab;
         }
     }
 }

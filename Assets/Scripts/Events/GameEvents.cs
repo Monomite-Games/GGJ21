@@ -39,6 +39,7 @@ namespace Palomas
 
         public event EventHandler<RequestEventArgs> RequestObtained;
         public event EventHandler<RequestEventArgs> RequestCompleted;
+        public event EventHandler<ItemEventArgs> ItemDelivered;
         public event EventHandler<ItemEventArgs> ItemAttached;
         public event EventHandler<HealthEventArgs> HealthLost;
         public event EventHandler<LifeEventArgs> LifeLost;
@@ -76,19 +77,25 @@ namespace Palomas
             GameEnd?.Invoke(this, eventArgs);
         }
 
-        public void OnRequestObtained(int requestId)
+        public void OnRequestObtained(string requestId)
         {
             RequestEventArgs eventArgs = new RequestEventArgs(requestId);
             RequestObtained?.Invoke(this, eventArgs);
         }
 
-        public void OnRequestCompleted(int requestId)
+        public void OnRequestCompleted(string requestId)
         {
             RequestEventArgs eventArgs = new RequestEventArgs(requestId);
             RequestCompleted?.Invoke(this, eventArgs);
         }
 
-        public void OnItemAttached(int itemId)
+        public void OnItemDelivered(string itemId)
+        {
+            ItemEventArgs eventArgs = new ItemEventArgs(itemId);
+            ItemDelivered?.Invoke(this, eventArgs);
+        }
+
+        public void OnItemAttached(string itemId)
         {
             ItemEventArgs eventArgs = new ItemEventArgs(itemId);
             ItemAttached?.Invoke(this, eventArgs);
@@ -134,13 +141,13 @@ namespace Palomas
 
     public class RequestEventArgs
     {
-        public int RequestId
+        public string RequestId
         {
             get;
             private set;
         }
 
-        public RequestEventArgs(int requestId)
+        public RequestEventArgs(string requestId)
         {
             this.RequestId = requestId;
         }
@@ -148,13 +155,13 @@ namespace Palomas
 
     public class ItemEventArgs
     {
-        public int ItemId
+        public string ItemId
         {
             get;
             private set;
         }
 
-        public ItemEventArgs(int itemId)
+        public ItemEventArgs(string itemId)
         {
             this.ItemId = itemId;
         }
