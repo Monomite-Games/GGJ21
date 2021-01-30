@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Palomas.Requests
@@ -53,6 +54,12 @@ namespace Palomas.Requests
             }
 
             return null;
+        }
+
+        public Request GetRandomUnused()
+        {
+            ICollection<Request> unusedRequests = RequestsMap.Values.Where<Request>(request => !request.IsInUse()).ToList<Request>();
+            return GameUtils.RandomElement<Request>(unusedRequests);
         }
     }
 }

@@ -39,6 +39,7 @@ namespace Palomas
 
         public event EventHandler<RequestEventArgs> RequestObtained;
         public event EventHandler<RequestEventArgs> RequestCompleted;
+        public event EventHandler<RequestItemEventArgs> RequestChanged;
         public event EventHandler<ItemEventArgs> ItemDelivered;
         public event EventHandler<ItemEventArgs> ItemAttached;
         public event EventHandler<HealthEventArgs> HealthLost;
@@ -87,6 +88,12 @@ namespace Palomas
         {
             RequestEventArgs eventArgs = new RequestEventArgs(requestId);
             RequestCompleted?.Invoke(this, eventArgs);
+        }
+
+        public void OnRequestChanged(string requestId, string itemId)
+        {
+            RequestItemEventArgs eventArgs = new RequestItemEventArgs(requestId, itemId);
+            RequestChanged?.Invoke(this, eventArgs);
         }
 
         public void OnItemDelivered(string itemId)
@@ -163,6 +170,26 @@ namespace Palomas
 
         public ItemEventArgs(string itemId)
         {
+            this.ItemId = itemId;
+        }
+    }
+
+    public class RequestItemEventArgs
+    {
+        public string RequestId
+        {
+            get;
+            private set;
+        }
+        public string ItemId
+        {
+            get;
+            private set;
+        }
+
+        public RequestItemEventArgs(string requestId, string itemId)
+        {
+            this.RequestId = requestId;
             this.ItemId = itemId;
         }
     }

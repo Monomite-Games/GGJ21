@@ -8,16 +8,23 @@ namespace Palomas.Items
         private string Id;
 
         [SerializeField]
-        private GameObject ItemPrefab;
+        private GameObject Prefab;
+
+        private bool InUse;
 
         public string GetId()
         {
             return Id;
         }
 
-        public GameObject GetItemPrefab()
+        public GameObject GetPrefab()
         {
-            return ItemPrefab;
+            return Prefab;
+        }
+
+        public bool IsInUse()
+        {
+            return InUse;
         }
     }
 }
