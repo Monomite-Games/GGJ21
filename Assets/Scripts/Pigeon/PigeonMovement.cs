@@ -5,6 +5,8 @@ namespace Palomas.Pigeon
 {
     public class PigeonMovement : MonoBehaviour
     {
+        private GameEvents GameEvents => GameEvents.Instance;
+
         private Rigidbody2D rb;
         public Transform model;
 
