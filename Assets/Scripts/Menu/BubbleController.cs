@@ -27,7 +27,7 @@ namespace Palomas.Menu
 
         private void ChangeToObtained()
         {
-            GameObject itemObject = GameObject.Instantiate(Item.GetItemPrefab(), ItemHolder);
+            GameObject itemObject = GameObject.Instantiate(Item.GetPrefab(), ItemHolder);
             itemObject.GetComponent<BoxCollider2D>().enabled = false;
             itemObject.GetComponent<Rigidbody2D>().isKinematic = true;
             

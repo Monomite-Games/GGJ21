@@ -10,11 +10,10 @@ namespace Palomas.Requests
 
         [SerializeField]
         private string Id;
-
-        [SerializeField]
+        
         private string ItemId;
 
-        private bool Completed = false;
+        private bool InUse = false;
 
         public string GetId()
         {
@@ -26,19 +25,26 @@ namespace Palomas.Requests
             return this.ItemId;
         }
 
-        public bool IsCompleted()
+        public bool IsInUse()
         {
-            return this.Completed;
+            return this.InUse;
         }
 
         private void Start()
         {
-            GameEvents.RequestCompleted += (sender, args) => OnCompleted();
+            GameEvents.RequestChanged += (sender, args) => { if (args.RequestId.Equals(this.Id)) { Activate(args.ItemId); } };
+            GameEvents.RequestCompleted += (sender, args) => { if (args.RequestId.Equals(this.Id)) { OnCompleted(); } };
+        }
+
+        private void Activate(string itemId)
+        {
+            InUse = true;
+            ItemId = itemId;
         }
 
         private void OnCompleted()
         {
-            Completed = true;
+            InUse = false;
             GameEvents.OnItemDelivered(ItemId);
         }
     }
