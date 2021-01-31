@@ -55,6 +55,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: RetainerJane Terraza
       objectReference: {fileID: 0}
+    - target: {fileID: 859523874916216644, guid: 0f88fc3eee8cefd46860b1761d52083f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: daaceb6ac0373054f820df785c5894a5, type: 2}
+    - target: {fileID: 2309091722837963410, guid: 0f88fc3eee8cefd46860b1761d52083f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2b4f1324db7c4b44ab80c0e659d5cc6d, type: 2}
+    - target: {fileID: 3573508172818198509, guid: 0f88fc3eee8cefd46860b1761d52083f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: daaceb6ac0373054f820df785c5894a5, type: 2}
+    - target: {fileID: 4983750872163773576, guid: 0f88fc3eee8cefd46860b1761d52083f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2b4f1324db7c4b44ab80c0e659d5cc6d, type: 2}
     - target: {fileID: 5247660566420497833, guid: 0f88fc3eee8cefd46860b1761d52083f, type: 3}
       propertyPath: m_LocalPosition.z
       value: 11.92

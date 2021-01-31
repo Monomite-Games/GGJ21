@@ -73,7 +73,7 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 5
     - _Surface: 1
-    - _ToonBrightness: 0
+    - _ToonBrightness: 0.2
     - _ToonOffset: 0.15
     - _ToonSmoothness: 0.12
     - _WorkflowMode: 0

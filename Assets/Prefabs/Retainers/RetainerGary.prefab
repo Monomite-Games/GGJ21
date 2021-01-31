@@ -373,6 +373,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -5414635437867438880, guid: f4643b0217eb3064bbe2bafa2e62ef4f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2b4f1324db7c4b44ab80c0e659d5cc6d, type: 2}
     - target: {fileID: -5057710129296493097, guid: f4643b0217eb3064bbe2bafa2e62ef4f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -389,6 +393,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -2492463646575474189, guid: f4643b0217eb3064bbe2bafa2e62ef4f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: daaceb6ac0373054f820df785c5894a5, type: 2}
     - target: {fileID: -1774077048947893331, guid: f4643b0217eb3064bbe2bafa2e62ef4f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -417,6 +425,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 573207495084506855, guid: f4643b0217eb3064bbe2bafa2e62ef4f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: daaceb6ac0373054f820df785c5894a5, type: 2}
     - target: {fileID: 752102259926609610, guid: f4643b0217eb3064bbe2bafa2e62ef4f, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -473,6 +485,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7878262863992339028, guid: f4643b0217eb3064bbe2bafa2e62ef4f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2b4f1324db7c4b44ab80c0e659d5cc6d, type: 2}
     - target: {fileID: 8946895070689928335, guid: f4643b0217eb3064bbe2bafa2e62ef4f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
