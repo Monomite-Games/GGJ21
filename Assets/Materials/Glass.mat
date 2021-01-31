@@ -74,8 +74,8 @@ Material:
     - _SrcBlend: 5
     - _Surface: 1
     - _ToonBrightness: 0
-    - _ToonOffset: 0
-    - _ToonSmoothness: 0
+    - _ToonOffset: 0.15
+    - _ToonSmoothness: 0.12
     - _WorkflowMode: 0
     - _ZWrite: 0
     m_Colors:
