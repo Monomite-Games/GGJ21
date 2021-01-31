@@ -63,9 +63,13 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: -7905845218126288214, guid: 398e98a4ece18c4449b5385d79af7f78, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b3776966c6f7f7647a617fca71405a23, type: 2}
     - target: {fileID: 919132149155446097, guid: 398e98a4ece18c4449b5385d79af7f78, type: 3}
       propertyPath: m_Name
-      value: Building_Balcony Variant
+      value: Building_Balcony
       objectReference: {fileID: 0}
     - target: {fileID: 3850823202485565802, guid: 398e98a4ece18c4449b5385d79af7f78, type: 3}
       propertyPath: m_Materials.Array.data[0]
