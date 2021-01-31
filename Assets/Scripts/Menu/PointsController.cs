@@ -10,9 +10,6 @@ namespace Palomas.Menu
         [SerializeField]
         private Text PointsText;
 
-        [SerializeField]
-        private string Suffix = "$";
-
         private void Start()
         {
             UpdatePoints(0);
@@ -22,7 +19,7 @@ namespace Palomas.Menu
 
         private void UpdatePoints(int currentPoints)
         {
-            PointsText.text = currentPoints.ToString() + " " + Suffix;
+            PointsText.text = currentPoints.ToString();
         }
     }
 }
