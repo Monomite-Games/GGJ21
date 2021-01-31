@@ -100,6 +100,9 @@ namespace Palomas
 
         private void DisablePigeon()
         {
+            PigeonMovement pigeon = GameObject.Find("Pigeon").GetComponent<PigeonMovement>();
+            pigeon.canMove = false;
+
             Destroy(GameObject.Find("Pigeon"));
         }
 
