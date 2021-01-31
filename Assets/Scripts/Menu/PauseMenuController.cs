@@ -17,13 +17,13 @@ namespace Palomas.Menu
         private Button RestartButton;
 
         [SerializeField]
-        private Button ExitButton;
+        private Button MenuButton;
 
         private void Start()
         {
             ContinueButton.onClick.AddListener(ContinueClick);
             RestartButton.onClick.AddListener(RestartClick);
-            ExitButton.onClick.AddListener(ExitClick);
+            MenuButton.onClick.AddListener(MenuClick);
 
             GameEvents.ToPauseMenu += (sender, args) => Show();
             GameEvents.BackFromPauseMenu += (sender, args) => Hide();
@@ -49,7 +49,7 @@ namespace Palomas.Menu
             GameEvents.OnRestartLevel();
         }
 
-        private void ExitClick()
+        private void MenuClick()
         {
             GameEvents.OnToMainMenu();
         }
