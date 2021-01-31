@@ -35,7 +35,7 @@ namespace Palomas.Menu
             GameObject itemObject = GameObject.Instantiate(item.GetPrefab(), ItemHolder);
             itemObject.GetComponent<BoxCollider2D>().enabled = false;
             itemObject.GetComponent<Rigidbody2D>().isKinematic = true;
-            
+            itemObject.transform.localScale = new Vector3(3.0f, 3.0f, 3.0f);
         }
 
         private void ChangeToCompleted()
