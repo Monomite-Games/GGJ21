@@ -12,10 +12,14 @@ namespace Palomas.Pigeon
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (!collision.CompareTag("Player"))
+            ShitReceiver shitReceiver = collision.GetComponent<ShitReceiver>();
+            if (!collision.CompareTag("Player") && shitReceiver != null)
             {
                 hasImpacted = true;
                 col.isTrigger = false;
+
+                shitReceiver.DisabelBadCollider();
+
                 StartCoroutine(Delete());
             }
         }

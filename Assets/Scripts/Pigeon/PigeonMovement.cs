@@ -23,6 +23,7 @@ namespace Palomas.Pigeon
         public bool isFluttering = false;
         public bool isFreeFalling = false;
         public bool isRecovering = false;
+        public bool canMove = true;
 
         [Space]
         [Header("Timers")]
@@ -42,34 +43,42 @@ namespace Palomas.Pigeon
         {
             rb = GetComponent<Rigidbody2D>();
             animator = transform.GetChild(0).GetComponent<Animator>();
+
+            GameEvents.LifeLost += (send, args) => canMove = false;
         }
 
         private void Update()
         {
-            GetMoveInputs();
-            ChangeAnimLayer();
-
-            if (Input.GetKeyDown(KeyCode.Space) && !isFluttering)
+            if (canMove)
             {
-                if (!isFreeFalling || !isRecovering)
+                GetMoveInputs();
+                ChangeAnimLayer();
+
+                if (Input.GetKeyDown(KeyCode.Space) && !isFluttering)
                 {
-                    StartCoroutine(Flutter());
+                    if (!isFreeFalling || !isRecovering)
+                    {
+                        StartCoroutine(Flutter());
+                    }
                 }
+
+                Rotate();
+
+                if (!isFluttering)
+                {
+                    FreeFall();
+                }
+
+                PlayMoveParticles();
             }
-
-            Rotate();
-
-            if (!isFluttering)
-            {
-                FreeFall();
-            }
-
-            PlayMoveParticles();
         }
 
         private void FixedUpdate()
         {
-            Movement();
+            if (canMove)
+            {
+                Movement();
+            }
         }
 
         private void GetMoveInputs()

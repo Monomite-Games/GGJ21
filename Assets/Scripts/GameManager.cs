@@ -100,7 +100,7 @@ namespace Palomas
 
         private void DisablePigeon()
         {
-            GameObject.Find("Pigeon").GetComponent<PigeonManager>().Fenecimiento();
+            Destroy(GameObject.Find("Pigeon"));
         }
 
         private void SpawnPigeon()
