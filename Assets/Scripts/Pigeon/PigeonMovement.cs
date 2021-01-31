@@ -56,7 +56,7 @@ namespace Palomas.Pigeon
 
                 if (Input.GetKeyDown(KeyCode.Space) && !isFluttering)
                 {
-                    if (!isFreeFalling || !isRecovering)
+                    if (!isFreeFalling && !isRecovering)
                     {
                         StartCoroutine(Flutter());
                     }
@@ -70,6 +70,8 @@ namespace Palomas.Pigeon
                 }
 
                 PlayMoveParticles();
+
+                animator.SetBool("isRecovering", isRecovering);
             }
         }
 
@@ -78,6 +80,10 @@ namespace Palomas.Pigeon
             if (canMove)
             {
                 Movement();
+            }
+            else
+            {
+                rb.velocity = Vector3.zero;
             }
         }
 
@@ -125,6 +131,8 @@ namespace Palomas.Pigeon
         {
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
+                animator.SetTrigger("inFreeFall");
+
                 isFreeFalling = true;
 
                 fallingTimer = Time.time;
@@ -140,6 +148,7 @@ namespace Palomas.Pigeon
                 fallingTimer = Time.time - fallingTimer;
 
                 StartCoroutine(Boost(fallingTimer));
+
 
                 fallingTimer = 0f;
             }
@@ -181,7 +190,7 @@ namespace Palomas.Pigeon
 
         private void PlayMoveParticles()
         {
-            if (movement != Vector3.zero)
+            if (movement != Vector3.zero || isFreeFalling || isRecovering)
             {
                 if (!MovementParticle.isPlaying)
                 {
@@ -218,7 +227,7 @@ namespace Palomas.Pigeon
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.transform.CompareTag("Ground") && moveInput == Vector2.zero)
+            if (collision.transform.CompareTag("Ground"))
             {
                 animator.SetBool("isFlying", false);
             }

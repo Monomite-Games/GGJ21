@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Item
   - Shit
+  - Ground
   layers:
   - Default
   - TransparentFX
