@@ -17,7 +17,8 @@ namespace Palomas.Items
             SpawnPointState spawnPoint = GameUtils.RandomElement<SpawnPointState>(unusedSpawnPoints);
 
             spawnPoint.SetItemId(item.GetId());
-            GameObject.Instantiate(item.GetPrefab(), spawnPoint.transform);
+            GameObject itemObject = GameObject.Instantiate(item.GetPrefab(), spawnPoint.transform);
+            itemObject.transform.localScale = new Vector3(2.0f, 2.0f, 2.0f);
 
             return spawnPoint.GetLevel();
         }
