@@ -215,5 +215,21 @@ namespace Palomas.Pigeon
                 animator.SetLayerWeight(animator.GetLayerIndex("Oscilation"), 0f);
             }
         }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.transform.CompareTag("Ground") && moveInput == Vector2.zero)
+            {
+                animator.SetBool("isFlying", false);
+            }
+        }
+
+        private void OnCollisionExit2D(Collision2D collision)
+        {
+            if (collision.transform.CompareTag("Ground"))
+            {
+                animator.SetBool("isFlying", true);
+            }
+        }
     }
 }
