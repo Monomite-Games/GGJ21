@@ -17,7 +17,13 @@ namespace Palomas
         {
             Request = GetComponentInParent<Request>();
 
-            GameEvents.RequestChanged += (sender, args) => { if (args.RequestId.Equals(Request.GetId())) { Animator.SetBool("Perdido", true); } };
+            GameEvents.RequestChanged += (sender, args) => 
+            { 
+                if (args.RequestId.Equals(Request.GetId())) 
+                { 
+                    Animator.SetBool("Perdido", true); 
+                } 
+            };
             GameEvents.RequestCompleted += (sender, args) => { if (args.RequestId.Equals(Request.GetId())) { Animator.SetBool("Relax", true); } };
         }
     }
