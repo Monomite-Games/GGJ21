@@ -136,7 +136,6 @@ namespace Palomas
             yield return new WaitForEndOfFrame();
 
             GameEvents.OnGamePrepared();
-            //SpawnPigeon();
 
             yield return new WaitForSeconds(GameConstants.START_DELAY);
             

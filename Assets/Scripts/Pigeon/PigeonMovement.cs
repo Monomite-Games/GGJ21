@@ -44,7 +44,8 @@ namespace Palomas.Pigeon
             rb = GetComponent<Rigidbody2D>();
             animator = transform.GetChild(0).GetComponent<Animator>();
 
-            GameEvents.LifeLost += (send, args) => canMove = false;
+            GameEvents.LifeLost += (sender, args) => canMove = false;
+            GameEvents.GameEnd += (sender, args) => canMove = false;
         }
 
         private void Update()
