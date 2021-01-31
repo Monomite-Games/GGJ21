@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-4611061377546933105
+--- !u!114 &-320210639605424734
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: New Material
+  m_Name: Libro
   m_Shader: {fileID: -6465566751694194690, guid: bab61d8587988e64ea3a7bccb39ab8b4, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -61,7 +61,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture:
-        m_Texture: {fileID: 2800000, guid: 5fdbb591ae8e6d64db6fdf5cc7c59b85, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4f1397224726608419e107ec15b5b692, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
