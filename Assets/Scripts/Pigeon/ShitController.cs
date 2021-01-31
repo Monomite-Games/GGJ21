@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+using Palomas.Requests;
+
 namespace Palomas.Pigeon
 {
     public class ShitController : MonoBehaviour

@@ -1,18 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class ShitReceiver : MonoBehaviour
+namespace Palomas.Requests
 {
-    private Collider2D col;
-
-    private void Awake()
+    public class ShitReceiver : MonoBehaviour
     {
-        col = GetComponent<Collider2D>();
-    }
+        [SerializeField]
+        private Collider2D Collider;
 
-    public void DisabelBadCollider()
-    {
-        col.enabled = false;
+        [SerializeField]
+        private Animator Animator;
+
+        public void DisabelBadCollider()
+        {
+            Collider.enabled = false;
+            Animator.SetTrigger("Cagado");
+        }
     }
 }

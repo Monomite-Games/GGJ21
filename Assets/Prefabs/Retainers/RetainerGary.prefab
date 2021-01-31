@@ -107,6 +107,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1436704fad1db8c459f21e64569e0d0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Collider: {fileID: 6749343341650293238}
+  Animator: {fileID: 8666439752269935895}
 --- !u!95 &8666439752269935895
 Animator:
   serializedVersion: 3
@@ -135,9 +137,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7921870331570585683}
-  - component: {fileID: 7921870331570585682}
+  - component: {fileID: 7066457383491900938}
   m_Layer: 0
-  m_Name: RetainedPoint1
+  m_Name: RetainedPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -157,7 +159,7 @@ Transform:
   m_Father: {fileID: 219988919551890200}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7921870331570585682
+--- !u!114 &7066457383491900938
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -166,10 +168,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7921870331570585680}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 514b7d89cfa327948a2f81abc918d018, type: 3}
+  m_Script: {fileID: 11500000, guid: fc2c45bc0ace6fd4496077ae573fce1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Level: 3
+  Collider: {fileID: 6749343341650293238}
+  Animator: {fileID: 8666439752269935895}
 --- !u!1 &7921870332454962339
 GameObject:
   m_ObjectHideFlags: 0

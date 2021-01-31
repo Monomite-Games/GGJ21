@@ -33,7 +33,7 @@ namespace Palomas
             GameEvents.RequestCompleted += (sender, args) => { if (args.ItemId.Equals(this.ItemId)) { Deactivate(); } };
         }
 
-        private void Deactivate()
+        protected virtual void Deactivate()
         {
             ItemId = ItemTypes.None;
         }
