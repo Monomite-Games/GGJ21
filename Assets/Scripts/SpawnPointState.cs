@@ -5,9 +5,9 @@ namespace Palomas
 {
     public class SpawnPointState : MonoBehaviour
     {
-        private GameEvents GameEvents => GameEvents.Instance;
+        protected GameEvents GameEvents => GameEvents.Instance;
 
-        private ItemTypes ItemId = ItemTypes.None;
+        protected ItemTypes ItemId = ItemTypes.None;
 
         [SerializeField]
         private int Level = 1;
@@ -33,7 +33,7 @@ namespace Palomas
             GameEvents.RequestCompleted += (sender, args) => { if (args.ItemId.Equals(this.ItemId)) { Deactivate(); } };
         }
 
-        protected virtual void Deactivate()
+        protected void Deactivate()
         {
             ItemId = ItemTypes.None;
         }

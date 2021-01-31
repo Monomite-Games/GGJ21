@@ -11,10 +11,14 @@ namespace Palomas
         [SerializeField]
         private Animator Animator;
 
-        protected override void Deactivate()
+        private void Start()
         {
-            base.Deactivate();
+            GameEvents.RequestChanged += (sener, args) => { if (args.ItemId.Equals(this.ItemId)) { Activate(); } };
+            GameEvents.RequestCompleted += (sender, args) => { if (args.ItemId.Equals(this.ItemId)) { Deactivate(); } };
+        }
 
+        private void Activate()
+        {
             Collider.enabled = true;
             Animator.SetBool("Relax", true);
         }

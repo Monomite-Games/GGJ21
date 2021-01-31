@@ -13,6 +13,8 @@ namespace Palomas.Requests
         public void DisabelBadCollider()
         {
             Collider.enabled = false;
+
+            Animator.SetBool("Relax", false);
             Animator.SetTrigger("Cagado");
         }
     }
