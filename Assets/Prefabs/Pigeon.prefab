@@ -9829,11 +9829,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 693ed82c297122448b8d8e2c568e6773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hSpeed: 10
-  vSpeed: 5
-  flutterSpeed: 8
-  fallSpeed: 14
-  boostSpeed: 20
+  hSpeed: 13.333333
+  vSpeed: 6.6666665
+  flutterSpeed: 10.666667
+  fallSpeed: 18.666666
+  boostSpeed: 26.666666
   isFluttering: 0
   isFreeFalling: 0
   isRecovering: 0
