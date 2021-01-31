@@ -20,7 +20,6 @@ namespace Palomas.Menu
             Request = GetComponentInParent<Request>();
 
             GameEvents.RequestObtained += (sender, args) => { if (args.RequestId.Equals(Request.GetId())) { ChangeToObtained(); } };
-            GameEvents.RequestCompleted += (sender, args) => { if (args.RequestId.Equals(Request.GetId())) { ChangeToCompleted(); } };
         }
 
         private void ChangeToObtained()
@@ -36,11 +35,6 @@ namespace Palomas.Menu
             itemObject.GetComponent<BoxCollider2D>().enabled = false;
             itemObject.GetComponent<Rigidbody2D>().isKinematic = true;
             itemObject.transform.localScale = new Vector3(3.0f, 3.0f, 3.0f);
-        }
-
-        private void ChangeToCompleted()
-        {
-            Debug.Log("Request completed: " + Request.GetId());
         }
     }
 }

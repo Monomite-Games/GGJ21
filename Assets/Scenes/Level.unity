@@ -823,6 +823,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 75.674774
       objectReference: {fileID: 0}
+    - target: {fileID: 6749343341650293238, guid: 0f88fc3eee8cefd46860b1761d52083f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6792229702449610628, guid: 0f88fc3eee8cefd46860b1761d52083f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -64.84578
@@ -3645,6 +3649,10 @@ PrefabInstance:
     - target: {fileID: 219988919551890201, guid: 2fdccade500558840b908dfc1d5ff2a1, type: 3}
       propertyPath: m_Name
       value: RetainerGary
+      objectReference: {fileID: 0}
+    - target: {fileID: 6749343341650293238, guid: 2fdccade500558840b908dfc1d5ff2a1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7921870331570585680, guid: 2fdccade500558840b908dfc1d5ff2a1, type: 3}
       propertyPath: m_Name
